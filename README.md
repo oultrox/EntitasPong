@@ -34,7 +34,7 @@ Code Overview
 
 Open Questions
 =============
-* I added `ENTITAS_HELP_REQUEST` comments in the code where I have questions about best practices. Help? :)
+* I added `ENTITAS_HELP_REQUEST` comments in the code where I have questions about best practices. I created a new <a href= "https://github.com/sschmid/Entitas-CSharp/issues/137">GitHub issue which includes all related code snippets.</P> Please help! :)
 
 TODO
 =============
