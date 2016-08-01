@@ -12,7 +12,7 @@
 Screenshot
 =============
 
-![Alt text](/entitas_pong_screenshot.png?raw=true "Optional Title")
+![Alt text](/entitas_pong_screenshot.png?raw=true "Screenshot")
 
 Instructions
 =============
