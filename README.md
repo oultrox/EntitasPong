@@ -35,5 +35,5 @@ TODO
 Created By
 =============
 
-- Samuel Asher Rivello <a href="https://twitter.com/srivello/">@srivello</a>, <a href="https://github.com/RivelloMultimediaConsulting">Github</a>, <a href="www.rivellomultimediaconsulting.com/unity/">Rivellomultimediaconsulting.com</a>
+- Samuel Asher Rivello <a href="https://twitter.com/srivello/">@srivello</a>, <a href="http://www.github.com/RivelloMultimediaConsulting/">Github</a>, <a href="http://www.rivellomultimediaconsulting.com/unity/">Rivellomultimediaconsulting.com</a>
 
