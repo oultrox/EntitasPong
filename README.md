@@ -9,6 +9,11 @@
 
 </p>
 
+Screenshot
+=============
+
+![Alt text](/entitas_pong_screenshot.png?raw=true "Optional Title")
+
 Instructions
 =============
 * Replace the /Unity/Assets/3rdParty/Entitas folder contents with the latest download from <a href="http://github.com/sschmid/Entitas-CSharp/">github.com</a></BR>
@@ -18,8 +23,8 @@ Instructions
 
 Structure Overview
 =============
-* **/Assets/RMC/Prototype/Common/Scripts/Runtime/** contains code that could be reused across various Entitas games<BR>
-* **/Assets/RMC/Prototype/EntitasPong/Scripts/Runtime/** contains game-specific code
+* **/Assets/RMC/Common/Scripts/Runtime/** contains code that could be reused across various Entitas games<BR>
+* **/Assets/RMC/EntitasPong/Scripts/Runtime/** contains game-specific code
 
 Code Overview
 =============
