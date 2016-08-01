@@ -302,7 +302,6 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
 
 
 		//ADVICE ON RESTARTING: https://github.com/sschmid/Entitas-CSharp/issues/82
-		//TODO: Restart is not complete. It doesn't truely represent a fresh start yet - srivello
 		public void Restart ()
 		{
             
