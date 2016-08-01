@@ -32,7 +32,7 @@ namespace RMC.Common.Entitas.Systems.Transform
 
 
         /// <summary>
-        /// ENTITAS_HELP_REQUEST: What is the best way to address OPTIONAL components like Tick and Friction below
+        /// ENTITAS_HELP_REQUEST: What is the best way to address OPTIONAL components like Tick and Friction below?
         /// </summary>
 		public void Execute() 
 		{

@@ -10,6 +10,7 @@ namespace RMC.Common.Entitas.Components.Transform
     /// This test is important because it is unique to my project (and thus not covered by Entitas' owners testing)
     /// Because Entitas Systems are decoupled from UnityEngine (typically), testing can be easy and thorough. Nice! - srivello
     /// </summary>
+
     [TestFixture]
     public class VelocitySystemTest
     {
@@ -41,6 +42,10 @@ namespace RMC.Common.Entitas.Components.Transform
 
         /// <summary>
         /// Here we will test a # of executions of the test. We could test much more executions too if desired.
+        /// 
+        /// ENTITAS_HELP_REQUEST: 
+        ///     What areas of code do you recommend developers test? (e.g. our custom systems?)
+        ///     Is the test below an appropriate way to test a system?
         /// </summary>
         [Test]
         public void ExecuteSystemTest ([NUnit.Framework.Range (1, 10, 1)] int totalSystemExecutions)

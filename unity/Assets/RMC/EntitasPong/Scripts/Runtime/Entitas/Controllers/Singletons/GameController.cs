@@ -186,8 +186,17 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
 
 		}
 
+        /// <summary>
+        /// ENTITAS_HELP_REQUEST: 
+        ///     What is a Feature? 
+        ///     Features vs System?
+        ///     Where is this documented online?
+        ///     What is the best practice to handle pausable vs unpausable systems?
+        /// </summary>
 		private void SetupSystems ()
 		{
+
+
 
 			//a feature is a group of systems
 			_pausableUpdateSystems = new Feature ();
@@ -241,7 +250,7 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
 
 		public void TogglePause ()
 		{
-            _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, 0.5f);
+            _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, GameConstants.AudioVolume);
             SetPause(!_gameEntity.time.isPaused);
 
 			//Keep
@@ -258,13 +267,13 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
             {
                 //unmute first
                 SetMute(!isMuted);
-                _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, 0.5f);
+                _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, GameConstants.AudioVolume);
 
             }
             else
             {
                 //play sound first
-                _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, 0.5f);
+                _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, GameConstants.AudioVolume);
                 SetMute(!isMuted);
             }
 
@@ -305,7 +314,7 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
         //Add small pause so we hear the click sound
         private IEnumerator Restart_Coroutine ()
         {
-            _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, 0.5f);
+            _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, GameConstants.AudioVolume);
             yield return new WaitForSeconds(0.25f);
             GameController.Destroy();
         }

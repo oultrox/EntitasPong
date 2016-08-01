@@ -62,7 +62,7 @@ namespace RMC.EntitasPong.Entitas.Systems.Collision
                         (
                             new Vector3(nextVelocity.x * GameConstants.PaddleBounceAmountX, nextVelocity.y + paddleVelocity.y * GameConstants.PaddleFrictionY, nextVelocity.z)
                         );
-                        _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_Collision, 0.5f);
+                        _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_Collision, GameConstants.AudioVolume);
                     }
 					
 				}

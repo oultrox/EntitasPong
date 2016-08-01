@@ -61,7 +61,7 @@ namespace RMC.Common.Entitas.Systems
             if (entity.position.position.y - sizeY < _bounds.min.y) 
             {
                 nextVelocity = new Vector3 (nextVelocity.x, nextVelocity.y * bounceAmount, nextVelocity.z);
-                _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_Collision, 0.5f);
+                _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_Collision, GameConstants.AudioVolume);
 
                 //order matters
                 //1
@@ -73,7 +73,7 @@ namespace RMC.Common.Entitas.Systems
             else if (entity.position.position.y + sizeY > _bounds.max.y)
             {
                 nextVelocity = new Vector3 (nextVelocity.x, nextVelocity.y * bounceAmount, nextVelocity.z);
-                _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_Collision, 0.5f);
+                _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_Collision, GameConstants.AudioVolume);
 
                 //order matters
                 //1

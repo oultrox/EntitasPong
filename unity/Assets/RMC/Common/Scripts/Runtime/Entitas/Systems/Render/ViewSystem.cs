@@ -17,6 +17,12 @@ namespace RMC.Common.Entitas.Systems.Render
 		// ------------------ Serialized fields and properties
 		public TriggerOnEvent trigger { get { return Matcher.AllOf(Matcher.View, Matcher.Position).OnEntityAdded(); } }
 
+        /// <summary>
+        /// ENTITAS_HELP_REQUEST: 
+        ///     What does ensureComponents do?
+        ///     Is it only relevant to IReactiveSystems?
+        ///     Where is it documented online?
+        /// </summary>
 		public IMatcher ensureComponents { get { return Matcher.View; } }
 
 		// ------------------ Non-serialized fields
