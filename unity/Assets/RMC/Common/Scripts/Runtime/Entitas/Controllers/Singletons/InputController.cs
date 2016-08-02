@@ -2,7 +2,6 @@
 using Entitas;
 using UnityEngine;
 using System.Collections.Generic;
-using RMC.EntitasPong.Entitas.Components;
 using RMC.Common.Entitas.Components.Input;
 
 

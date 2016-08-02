@@ -23,5 +23,20 @@
             this.y = y;
         }
 
+        public Vector2 ()
+        {
+            this.x = Vector2.zero.x;
+            this.y = Vector2.zero.y;
+        }
+
+        public static Vector2 zero
+        {
+            get
+            {
+                return new Vector2 (0,0);
+            }
+
+        }
+
     }
 }

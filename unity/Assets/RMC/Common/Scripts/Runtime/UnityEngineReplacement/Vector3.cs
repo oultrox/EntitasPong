@@ -25,6 +25,13 @@
             this.z = z;
         }
 
+        public Vector3 ()
+        {
+            this.x = Vector3.zero.x;
+            this.y = Vector3.zero.y;
+            this.z = Vector3.zero.z;
+        }
+
         public static Vector3 zero
         {
             get
