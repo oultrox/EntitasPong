@@ -1,8 +1,8 @@
 ﻿using Entitas;
-using UnityEngine;
 using RMC.Common.Entitas.Components;
 using System;
 using System.Collections.Generic;
+using RMC.Common.UnityEngineReplacement;
 
 namespace RMC.Common.Entitas.Systems
 {
@@ -10,7 +10,7 @@ namespace RMC.Common.Entitas.Systems
     /// Constains the paddle's y position within the screenbounds.
     /// Great example of a system that operates ONLY when a component (position) is changed. Efficient!
     /// </summary>
-    public class BoundsConstrainSystem : ISystem, ISetPool, IEnsureComponents
+    public class BoundsConstrainSystem : ISystem, ISetPool
     {
         // ------------------ Constants and statics
 
@@ -24,8 +24,6 @@ namespace RMC.Common.Entitas.Systems
         private GroupObserver _onPaddlePositionUpdated;
 
         // ------------------ Methods
-
-        public IMatcher ensureComponents { get { return Matcher.View; } }
 
         // Implement ISetPool to get the pool used when calling
         // pool.CreateSystem<MoveSystem>();

@@ -1,5 +1,4 @@
 ﻿using Entitas;
-using UnityEngine;
 using RMC.Common.Entitas.Components;
 using System;
 
@@ -42,7 +41,7 @@ namespace RMC.Common.Entitas.Systems.GameState
 		public void Execute() 
 		{
             //always increment
-            float timeSinceGameStartTotal = _gameEntity.time.timeSinceGameStartTotal + Time.deltaTime;
+            float timeSinceGameStartTotal = _gameEntity.time.timeSinceGameStartTotal + _gameEntity.tick.deltaTime;
 
 
             //sometimes increment
@@ -51,7 +50,7 @@ namespace RMC.Common.Entitas.Systems.GameState
                 //unpaused
                 _gameEntity.ReplaceTime 
                 (
-                    _gameEntity.time.timeSinceGameStartUnpaused + Time.deltaTime,
+                    _gameEntity.time.timeSinceGameStartUnpaused + _gameEntity.tick.deltaTime,
                     timeSinceGameStartTotal,
                     _gameEntity.time.isPaused
                 );

@@ -2,7 +2,7 @@
 using System.Linq;
 using Entitas;
 using RMC.Common.Entitas.Components.Collision;
-using UnityEngine;
+using RMC.Common.UnityEngineReplacement;
 
 namespace RMC.EntitasPong.Entitas.Systems.Collision
 {
@@ -44,13 +44,13 @@ namespace RMC.EntitasPong.Entitas.Systems.Collision
 			foreach (var collisionEntity in entities) 
 			{
                 //The collision may happen on the same frame as the ball is removed after a goal
-                var entity = _group.GetEntities().FirstOrDefault(e2 => e2.view.gameObject == collisionEntity.collision.gameObject);
+                var entity = _group.GetEntities().FirstOrDefault(e2 => e2.view.gameObject == collisionEntity.collision.localGameObject);
+
                 if (collisionEntity.collision.collisionType == CollisionComponent.CollisionType.TriggerEnter && entity != null)
 				{
 					//Find entities from the unity data
 					
-					var paddleEntity = _group.GetEntities().FirstOrDefault(e2 => e2.view.gameObject == collisionEntity.collision.collider.gameObject);
-					
+					var paddleEntity = _group.GetEntities().FirstOrDefault(e2 => e2.view.gameObject == collisionEntity.collision.localGameObject);
                     if (paddleEntity != null)
                     {
                         //Debug.Log (collisionEntity.collision.collider.gameObject);
@@ -66,7 +66,7 @@ namespace RMC.EntitasPong.Entitas.Systems.Collision
                     }
 					
 				}
-				collisionEntity.willDestroy = true;
+                collisionEntity.WillDestroy(true);
 	        }
 
 	   }

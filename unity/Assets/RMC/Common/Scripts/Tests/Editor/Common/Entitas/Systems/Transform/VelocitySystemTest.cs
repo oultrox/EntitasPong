@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Entitas;
 using RMC.Common.Entitas.Systems.Transform;
+using RMC.Common.UnityEngineReplacement;
 
 namespace RMC.Common.Entitas.Components.Transform
 {
@@ -40,13 +40,6 @@ namespace RMC.Common.Entitas.Components.Transform
         }
 
 
-        /// <summary>
-        /// Here we will test a # of executions of the test. We could test much more executions too if desired.
-        /// 
-        /// ENTITAS_HELP_REQUEST: 
-        ///     What areas of code do you recommend developers test? (e.g. our custom systems?)
-        ///     Is the test below an appropriate way to test a system?
-        /// </summary>
         [Test]
         public void ExecuteSystemTest ([NUnit.Framework.Range (1, 10, 1)] int totalSystemExecutions)
         {

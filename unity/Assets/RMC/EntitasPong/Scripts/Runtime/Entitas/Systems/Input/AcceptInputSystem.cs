@@ -1,6 +1,6 @@
 ﻿using Entitas;
-using UnityEngine;
 using RMC.Common.Entitas.Components.Input;
+using RMC.Common.UnityEngineReplacement;
 
 namespace RMC.EntitasPong.Entitas.Systems
 {
@@ -48,6 +48,7 @@ namespace RMC.EntitasPong.Entitas.Systems
                     }
                 }
 
+                //  The Entity holding the AcceptInputComponent has been processed, so destroy the related Entity
                 inputEntity.WillDestroy(true);
             }
 

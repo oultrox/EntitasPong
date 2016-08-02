@@ -1,11 +1,12 @@
 ﻿using Entitas;
-using UnityEngine;
 using RMC.Common.Entitas.Components;
 using System;
 using RMC.EntitasPong.Entitas.Controllers;
 using System.Collections;
 using RMC.EntitasPong.Entitas.Controllers.Singleton;
 using RMC.EntitasPong.Entitas;
+using RMC.Common.UnityEngineReplacement;
+using RMC.Common.Utilities;
 
 namespace RMC.Common.Entitas.Systems.GameState
 {
@@ -49,24 +50,28 @@ namespace RMC.Common.Entitas.Systems.GameState
 
 		public void Execute() 
 		{
-			foreach (var e in _goalGroup.GetEntities()) 
+            foreach (var entity in _goalGroup.GetEntities()) 
 			{
 				Bounds bounds = _gameEntity.bounds.bounds;
 
-				if (e.position.position.x < bounds.min.x) 
+				if (entity.position.position.x < bounds.min.x) 
 				{
 					//white
-					ChangeScore(e.goal.pointsPerGoal, 0);
-					e.willDestroy = true;
-                    GameController.Instance.StartCoroutine(StartNextRound_Coroutine(0.25f));
+					ChangeScore(entity.goal.pointsPerGoal, 0);
+
+                    //  The ball holding the GoalComponent has been processed, so destroy the related Entity
+                    entity.WillDestroy(true);
+                    CoroutineUtility.Instance.StartCoroutineAfterDelay(StartNextRound_Coroutine(), 0.25f);
                     _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_GoalSuccess, 0.25f);
 				} 
-				else if (e.position.position.x > bounds.max.x)
+				else if (entity.position.position.x > bounds.max.x)
 				{
 					//black
-					ChangeScore(0, e.goal.pointsPerGoal);
-					e.willDestroy = true;
-                    GameController.Instance.StartCoroutine(StartNextRound_Coroutine(0.25f));
+					ChangeScore(0, entity.goal.pointsPerGoal);
+
+                    //  The ball holding the GoalComponent has been processed, so destroy the related Entity
+                    entity.WillDestroy(true);
+                    CoroutineUtility.Instance.StartCoroutineAfterDelay(StartNextRound_Coroutine(),0.25f);
                     _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_GoalFailure, 0.5f);
 					
 				}
@@ -78,10 +83,10 @@ namespace RMC.Common.Entitas.Systems.GameState
         /// I'll do the delay in the StartNextRoundSystem AFTER the ball is put on the screen
         /// and BEFORE I start it moving
         /// </summary>
-        private IEnumerator StartNextRound_Coroutine (float delayInSeconds)
+        private IEnumerator StartNextRound_Coroutine ()
         {
-            yield return new WaitForSeconds(delayInSeconds);
             _pool.CreateEntity().willStartNextRound = true;
+            yield return null;
         }
 
         private void ChangeScore(int whiteScoreDelta, int blackScoreDelta)

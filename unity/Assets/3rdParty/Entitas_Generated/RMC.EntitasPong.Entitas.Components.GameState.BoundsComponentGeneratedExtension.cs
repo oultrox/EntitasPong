@@ -12,13 +12,13 @@ namespace Entitas {
 
         public bool hasBounds { get { return HasComponent(ComponentIds.Bounds); } }
 
-        public Entity AddBounds(UnityEngine.Bounds newBounds) {
+        public Entity AddBounds(RMC.Common.UnityEngineReplacement.Bounds newBounds) {
             var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.BoundsComponent>(ComponentIds.Bounds);
             component.bounds = newBounds;
             return AddComponent(ComponentIds.Bounds, component);
         }
 
-        public Entity ReplaceBounds(UnityEngine.Bounds newBounds) {
+        public Entity ReplaceBounds(RMC.Common.UnityEngineReplacement.Bounds newBounds) {
             var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.BoundsComponent>(ComponentIds.Bounds);
             component.bounds = newBounds;
             ReplaceComponent(ComponentIds.Bounds, component);

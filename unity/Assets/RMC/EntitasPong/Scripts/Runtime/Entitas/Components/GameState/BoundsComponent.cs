@@ -1,4 +1,5 @@
 ﻿using Entitas;
+using RMC.Common.UnityEngineReplacement;
 
 namespace RMC.EntitasPong.Entitas.Components.GameState
 {
@@ -8,6 +9,6 @@ namespace RMC.EntitasPong.Entitas.Components.GameState
 	public class BoundsComponent : IComponent
 	{
 		// ------------------ Serialized fields and properties
-		public UnityEngine.Bounds bounds;		
+		public Bounds bounds;		
 	}
 }

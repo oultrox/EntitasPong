@@ -1,9 +1,9 @@
 ﻿using Entitas;
-using UnityEngine;
 using RMC.Common.Entitas.Components;
 using System;
 using System.Collections.Generic;
 using RMC.EntitasPong.Entitas;
+using RMC.Common.UnityEngineReplacement;
 
 namespace RMC.Common.Entitas.Systems
 {

@@ -45,7 +45,7 @@ namespace RMC.Common.Entitas.Controllers.Singleton
 
             if (verticalAxis != 0 || horizontalAxis != 0)
             {
-                _pool.CreateEntity().AddInput(InputComponent.InputType.Axis, KeyCode.None, new Vector2(horizontalAxis, verticalAxis));
+                _pool.CreateEntity().AddInput(InputComponent.InputType.Axis, RMC.Common.UnityEngineReplacement.KeyCode.None, new RMC.Common.UnityEngineReplacement.Vector2(horizontalAxis, verticalAxis));
             }
 
             //TODO: Add button support

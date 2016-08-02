@@ -20,6 +20,8 @@ using RMC.Common.Entitas.Utilities;
 using EntitasSystems = Entitas.Systems;
 using RMC.EntitasPong.Entitas.Systems.GameState;
 using RMC.EntitasPong.Entitas.Systems;
+using RMC.Common.Utilities;
+using RMC.Common.Entitas.Components.Render;
 
 namespace RMC.EntitasPong.Entitas.Controllers.Singleton
 {
@@ -42,6 +44,7 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
 		private Pool _pool;
 		private PoolObserver _poolObserver;
 		private Entity _gameEntity;
+        private RMC.Common.UnityEngineReplacement.Bounds _screenBounds;
 
 
 		// ------------------ Methods
@@ -53,10 +56,15 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
 
 
             GameController.OnDestroying += GameController_OnDestroying;
+            TickController.Instantiate();
             AudioController.Instantiate();
             InputController.Instantiate();
+            ViewController.Instantiate();
+            ResourceController.Instantiate();
 
 			Application.targetFrameRate = 30;
+            _screenBounds = UnityEngineReplacementUtility.Convert(GameUtility.GetOrthographicBounds(Camera.main));
+
 
 			SetupPools ();
 			SetupPoolObserver();
@@ -105,6 +113,20 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
             {
                 InputController.Destroy();
             }
+            if (ViewController.IsInstantiated())
+            {
+                ViewController.Destroy();
+            }
+            if (TickController.IsInstantiated())
+            {
+                TickController.Destroy();
+            }
+            if (ResourceController.IsInstantiated())
+            {
+                ResourceController.Destroy();
+            }
+
+
             _pausableUpdateSystems.DeactivateReactiveSystems();
             _unpausableUpdateSystems.DeactivateReactiveSystems ();
 
@@ -149,50 +171,66 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
 		private void SetupEntities ()
 		{
 
-            var bounds = GameUtility.GetOrthographicBounds(Camera.main);
-            //Debug.Log(bounds.min.y + " and " + bounds.max.y);
+            //Debug.Log("GameController.SetupEntities()");
+          //Debug.Log(bounds.min.y + " and " + bounds.max.y);
 
 
             //  Create game with data. This is non-visual.
 			_gameEntity = _pool.CreateEntity();
             _gameEntity.IsGame(true);
-			_gameEntity.AddBounds(bounds);
+			_gameEntity.AddBounds(_screenBounds);
 			_gameEntity.AddScore(0,0);
 			_gameEntity.AddTime (0, 0, false);
             _gameEntity.AddAudioSettings(false);
+            _gameEntity.AddTick(0);
 
             //  Create human player on the right
             Entity whitePaddleEntity            = _pool.CreateEntity ();
             whitePaddleEntity.AddPaddle         (PaddleComponent.PaddleType.White);
             whitePaddleEntity.AddResource       ("Prefabs/PaddleWhite");
-            whitePaddleEntity.AddVelocity       (Vector3.zero);
+            whitePaddleEntity.AddVelocity       (RMC.Common.UnityEngineReplacement.Vector3.zero);
+            whitePaddleEntity.AddFriction       (RMC.Common.UnityEngineReplacement.Vector3.zero);
             whitePaddleEntity.WillAcceptInput   (true);
-            whitePaddleEntity.AddTick           (Time.deltaTime);
+            whitePaddleEntity.AddTick           (0);
+            whitePaddleEntity.OnComponentAdded += OnWhitePaddleComponentAdded;
 
             //  Create computer player on the left
             Entity blackPaddleEntity        = _pool.CreateEntity ();
             blackPaddleEntity.AddPaddle     (PaddleComponent.PaddleType.Black);
             blackPaddleEntity.AddResource   ("Prefabs/PaddleBlack");
-            blackPaddleEntity.AddVelocity   (Vector3.zero);
+            blackPaddleEntity.AddVelocity   (RMC.Common.UnityEngineReplacement.Vector3.zero);
+            blackPaddleEntity.AddFriction   (RMC.Common.UnityEngineReplacement.Vector3.zero);
             blackPaddleEntity.AddAI         (whitePaddleEntity, 1, 25f);
-            blackPaddleEntity.AddTick       (Time.deltaTime);
+            blackPaddleEntity.AddTick       (0);
+            blackPaddleEntity.OnComponentAdded += OnBlackPaddleComponentAdded;
 
-
-            //Tick the systems once so the 'View' is added by the AddResourceSystem()
-            _pausableUpdateSystems.Execute();
-            whitePaddleEntity.AddPosition (new Vector3 (bounds.max.x - whitePaddleEntity.view.bounds.size.x/2 - PaddleOffsetToEdgeX, 0, 0));
-            blackPaddleEntity.AddPosition (new Vector3 (bounds.min.x + blackPaddleEntity.view.bounds.size.x/2 + PaddleOffsetToEdgeX, 0, 0));
-			
 
 		}
 
         /// <summary>
-        /// ENTITAS_HELP_REQUEST: 
-        ///     What is a Feature? 
-        ///     Features vs System?
-        ///     Where is this documented online?
-        ///     What is the best practice to handle pausable vs unpausable systems?
+        /// Position depends on size, which depends on View. Wait for view.
         /// </summary>
+        private void OnWhitePaddleComponentAdded (Entity entity, int index, IComponent component)
+        {
+            if (component.GetType() == typeof(ViewComponent))
+            {
+                entity.AddPosition(new RMC.Common.UnityEngineReplacement.Vector3(_screenBounds.max.x - entity.view.bounds.size.x / 2 - PaddleOffsetToEdgeX, 0, 0));
+                entity.OnComponentAdded -= OnWhitePaddleComponentAdded;
+            }
+        }
+
+        /// <summary>
+        /// Position depends on size, which depends on View. Wait for view.
+        /// </summary>
+        private void OnBlackPaddleComponentAdded (Entity entity, int index, IComponent component) 
+        {
+            if (component.GetType() == typeof(ViewComponent))
+            {
+                entity.AddPosition (new RMC.Common.UnityEngineReplacement.Vector3 (_screenBounds.min.x + entity.view.bounds.size.x/2 + PaddleOffsetToEdgeX, 0, 0));
+                entity.OnComponentAdded -= OnBlackPaddleComponentAdded;
+            }
+        }
+
 		private void SetupSystems ()
 		{
 
@@ -203,11 +241,6 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
 			
 			_pausableUpdateSystems.Add (_pool.CreateSystem<StartNextRoundSystem> ());
 			_pausableUpdateSystems.Add (_pool.CreateSystem<VelocitySystem> ());
-			_pausableUpdateSystems.Add (_pool.CreateSystem<ViewSystem> ());
-
-			_pausableUpdateSystems.Add (_pool.CreateSystem<AddResourceSystem> ());
-			_pausableUpdateSystems.Add (_pool.CreateSystem<RemoveResourceSystem> ());
-
             _pausableUpdateSystems.Add (_pool.CreateSystem<AcceptInputSystem> ());
 			_pausableUpdateSystems.Add (_pool.CreateSystem<AISystem> ());
 			_pausableUpdateSystems.Add (_pool.CreateSystem<GoalSystem> ());
@@ -299,23 +332,21 @@ namespace RMC.EntitasPong.Entitas.Controllers.Singleton
             );
         }
 
-
-
 		//ADVICE ON RESTARTING: https://github.com/sschmid/Entitas-CSharp/issues/82
 		public void Restart ()
 		{
             
             SetPause(true);
-            StartCoroutine(Restart_Coroutine());
+            _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, GameConstants.AudioVolume);
+            CoroutineUtility.Instance.StartCoroutineAfterDelay(Restart_Coroutine(), 0.25f);
 			
 		}
 
         //Add small pause so we hear the click sound
         private IEnumerator Restart_Coroutine ()
         {
-            _pool.CreateEntity().AddPlayAudio(GameConstants.Audio_ButtonClickSuccess, GameConstants.AudioVolume);
-            yield return new WaitForSeconds(0.25f);
             GameController.Destroy();
+            return null;
         }
 
 

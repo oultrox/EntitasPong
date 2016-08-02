@@ -1,8 +1,8 @@
 ﻿using Entitas;
-using UnityEngine;
 using RMC.Common.Entitas.Components;
 using RMC.Common.Entitas.Components.Render;
 using RMC.Common.Entitas.Components.Transform;
+using RMC.Common.UnityEngineReplacement;
 
 namespace RMC.EntitasPong.Entitas.Systems
 {
@@ -44,9 +44,9 @@ namespace RMC.EntitasPong.Entitas.Systems
 		protected virtual void BallCreatedGroup_OnEntityAdded(Group collection, Entity ballEntity, int index, IComponent component)
 		{
 			//Debug.Log ("created" + ballEntity);
-			foreach (var e in _aiGroup.GetEntities()) 
+            foreach (var entity in _aiGroup.GetEntities()) 
 			{
-				e.ReplaceAI (ballEntity, e.aI.deadZoneY, e.aI.velocityY);
+				entity.ReplaceAI (ballEntity, entity.aI.deadZoneY, entity.aI.velocityY);
 			}
 		}
 
@@ -54,39 +54,39 @@ namespace RMC.EntitasPong.Entitas.Systems
 		protected virtual void BallDestroyGroup_OnEntityAdded(Group collection, Entity ballEntity, int index, IComponent component)
 		{
 			//Debug.Log ("destroy" + ballEntity);
-			foreach (var e in _aiGroup.GetEntities()) 
+            foreach (var entity in _aiGroup.GetEntities()) 
 			{
-				e.ReplaceAI (null, e.aI.deadZoneY, e.aI.velocityY);
-                e.ReplaceVelocity ( new Vector3 (0,0,0));
+				entity.ReplaceAI (null, entity.aI.deadZoneY, entity.aI.velocityY);
+                entity.ReplaceVelocity ( new RMC.Common.UnityEngineReplacement.Vector3 (0,0,0));
 			}
 		}
 
 		public void Execute() 
 		{
 
-			foreach (var e in _aiGroup.GetEntities()) 
+            foreach (var entity in _aiGroup.GetEntities()) 
 			{
 				Vector3 nextVelocity = Vector3.zero;
 		
 
                 //THe ball is destroyed after each goal, so we do some checks to NOT follow it at that moment - srivello
-				Entity targetEntity = e.aI.targetEntity;
+				Entity targetEntity = entity.aI.targetEntity;
 				if (targetEntity != null)
 				{
                     if (targetEntity.hasPosition)
                     {
 
                         Vector3 targetPosition = targetEntity.position.position;
-                        if (targetPosition.y > e.position.position.y + e.aI.deadZoneY)
+                        if (targetPosition.y > entity.position.position.y + entity.aI.deadZoneY)
                         {
-                            nextVelocity = new Vector3(0, e.aI.velocityY, 0);
+                            nextVelocity = new Vector3(0, entity.aI.velocityY, 0);
                         }
-                        else if (targetPosition.y < e.position.position.y - e.aI.deadZoneY)
+                        else if (targetPosition.y < entity.position.position.y - entity.aI.deadZoneY)
                         {
-                            nextVelocity = new Vector3(0, -e.aI.velocityY, 0);
+                            nextVelocity = new Vector3(0, -entity.aI.velocityY, 0);
                         }
 
-                        e.ReplaceVelocity(nextVelocity);
+                        entity.ReplaceVelocity(nextVelocity);
                     }
 				}
 
