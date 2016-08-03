@@ -4,7 +4,7 @@ using RMC.Common.Entitas.Utilities;
 using RMC.Common.UnityEngineReplacement;
 using RMC.Common.Utilities;
 
-namespace RMC.EntitasPong.Entitas
+namespace RMC.EntitasCoverShooter.Entitas
 {
 	/// <summary>
 	/// Easy access to commonly changeable configuration

@@ -1,10 +1,10 @@
 ﻿using Entitas;
 using RMC.Common.Entitas.Components;
 using System;
-using RMC.EntitasPong.Entitas.Controllers;
+using RMC.EntitasCoverShooter.Entitas.Controllers;
 using System.Collections;
-using RMC.EntitasPong.Entitas.Controllers.Singleton;
-using RMC.EntitasPong.Entitas;
+using RMC.EntitasCoverShooter.Entitas.Controllers.Singleton;
+using RMC.EntitasCoverShooter.Entitas;
 using RMC.Common.UnityEngineReplacement;
 using RMC.Common.Utilities;
 
@@ -13,7 +13,7 @@ namespace RMC.Common.Entitas.Systems.GameState
 	/// <summary>
 	/// Processess each goal that is scored
 	/// </summary>
-	public class GoalSystem : IExecuteSystem, ISetPool 
+    public class GoalSystem : ISetPool, IInitializeSystem, IExecuteSystem
 	{
 		// ------------------ Constants and statics
 
@@ -22,23 +22,28 @@ namespace RMC.Common.Entitas.Systems.GameState
 		// ------------------ Serialized fields and properties
 
 		// ------------------ Non-serialized fields
+        private Pool _pool;
 		private Group _goalGroup;
         private Entity _gameEntity;
-		private Pool _pool;
+		
 
 		// ------------------ Methods
 
 		// Implement ISetPool to get the pool used when calling
-		// pool.CreateSystem<MoveSystem>();
+		// pool.CreateSystem<FooSystem>();
 		public void SetPool(Pool pool) 
 		{
-			// Get the group of entities that have a Move and Position component
+			// Get the group of entities that have these component(s)
 			_pool = pool;
+  
+        }
+
+        public void Initialize()
+        {
             _goalGroup = _pool.GetGroup(Matcher.AllOf(Matcher.Goal, Matcher.Position, Matcher.Velocity));
 
             //By design: Systems created before Entities, so wait :)
             _pool.GetGroup(Matcher.AllOf(Matcher.Game, Matcher.Bounds, Matcher.Score)).OnEntityAdded += OnGameEntityAdded;
-
         }
 
         private void OnGameEntityAdded (Group group, Entity entity, int index, IComponent component)

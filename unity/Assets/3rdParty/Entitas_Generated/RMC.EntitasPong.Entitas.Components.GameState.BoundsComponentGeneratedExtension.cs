@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 namespace Entitas {
     public partial class Entity {
-        public RMC.EntitasPong.Entitas.Components.GameState.BoundsComponent bounds { get { return (RMC.EntitasPong.Entitas.Components.GameState.BoundsComponent)GetComponent(ComponentIds.Bounds); } }
+        public RMC.EntitasCoverShooter.Entitas.Components.GameState.BoundsComponent bounds { get { return (RMC.EntitasCoverShooter.Entitas.Components.GameState.BoundsComponent)GetComponent(ComponentIds.Bounds); } }
 
         public bool hasBounds { get { return HasComponent(ComponentIds.Bounds); } }
 
         public Entity AddBounds(RMC.Common.UnityEngineReplacement.Bounds newBounds) {
-            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.BoundsComponent>(ComponentIds.Bounds);
+            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.GameState.BoundsComponent>(ComponentIds.Bounds);
             component.bounds = newBounds;
             return AddComponent(ComponentIds.Bounds, component);
         }
 
         public Entity ReplaceBounds(RMC.Common.UnityEngineReplacement.Bounds newBounds) {
-            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.BoundsComponent>(ComponentIds.Bounds);
+            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.GameState.BoundsComponent>(ComponentIds.Bounds);
             component.bounds = newBounds;
             ReplaceComponent(ComponentIds.Bounds, component);
             return this;

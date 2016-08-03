@@ -1,7 +1,7 @@
 ﻿using Entitas;
 using Entitas.CodeGenerator;
 
-namespace RMC.EntitasPong.Entitas.Components.GameState
+namespace RMC.EntitasCoverShooter.Entitas.Components.GameState
 {
 	/// <summary>
 	/// Stores reward for goals

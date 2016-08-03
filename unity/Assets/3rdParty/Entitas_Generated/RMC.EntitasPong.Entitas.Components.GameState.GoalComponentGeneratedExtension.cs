@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 namespace Entitas {
     public partial class Entity {
-        public RMC.EntitasPong.Entitas.Components.GameState.GoalComponent goal { get { return (RMC.EntitasPong.Entitas.Components.GameState.GoalComponent)GetComponent(ComponentIds.Goal); } }
+        public RMC.EntitasCoverShooter.Entitas.Components.GameState.GoalComponent goal { get { return (RMC.EntitasCoverShooter.Entitas.Components.GameState.GoalComponent)GetComponent(ComponentIds.Goal); } }
 
         public bool hasGoal { get { return HasComponent(ComponentIds.Goal); } }
 
         public Entity AddGoal(int newPointsPerGoal) {
-            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.GoalComponent>(ComponentIds.Goal);
+            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.GameState.GoalComponent>(ComponentIds.Goal);
             component.pointsPerGoal = newPointsPerGoal;
             return AddComponent(ComponentIds.Goal, component);
         }
 
         public Entity ReplaceGoal(int newPointsPerGoal) {
-            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.GoalComponent>(ComponentIds.Goal);
+            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.GameState.GoalComponent>(ComponentIds.Goal);
             component.pointsPerGoal = newPointsPerGoal;
             ReplaceComponent(ComponentIds.Goal, component);
             return this;
@@ -33,13 +33,13 @@ namespace Entitas {
     public partial class Pool {
         public Entity goalEntity { get { return GetGroup(Matcher.Goal).GetSingleEntity(); } }
 
-        public RMC.EntitasPong.Entitas.Components.GameState.GoalComponent goal { get { return goalEntity.goal; } }
+        public RMC.EntitasCoverShooter.Entitas.Components.GameState.GoalComponent goal { get { return goalEntity.goal; } }
 
         public bool hasGoal { get { return goalEntity != null; } }
 
         public Entity SetGoal(int newPointsPerGoal) {
             if (hasGoal) {
-                throw new EntitasException("Could not set goal!\n" + this + " already has an entity with RMC.EntitasPong.Entitas.Components.GameState.GoalComponent!",
+                throw new EntitasException("Could not set goal!\n" + this + " already has an entity with RMC.EntitasCoverShooter.Entitas.Components.GameState.GoalComponent!",
                     "You should check if the pool already has a goalEntity before setting it or use pool.ReplaceGoal().");
             }
             var entity = CreateEntity();

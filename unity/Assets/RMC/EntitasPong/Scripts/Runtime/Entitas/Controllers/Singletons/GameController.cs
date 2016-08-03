@@ -3,7 +3,7 @@ using Entitas;
 using Entitas.Unity.VisualDebugging;
 using RMC.Common.Entitas.Systems.Render;
 using RMC.Common.Entitas.Systems.Transform;
-using RMC.EntitasPong.Entitas.Systems.Collision;
+using RMC.EntitasCoverShooter.Entitas.Systems.Collision;
 using RMC.Common.Entitas.Systems;
 
 // This is required because the entitas class path is similar to my namespaces. This prevents collision - srivello
@@ -13,17 +13,17 @@ using RMC.Common.Entitas.Systems.Destroy;
 using RMC.Common.Singleton;
 using UnityEngine.SceneManagement;
 using RMC.Common.Entitas.Systems.GameState;
-using RMC.EntitasPong.Entitas.Components;
+using RMC.EntitasCoverShooter.Entitas.Components;
 using RMC.Common.Entitas.Controllers.Singleton;
 using System.Collections;
 using RMC.Common.Entitas.Utilities;
 using EntitasSystems = Entitas.Systems;
-using RMC.EntitasPong.Entitas.Systems.GameState;
-using RMC.EntitasPong.Entitas.Systems;
+using RMC.EntitasCoverShooter.Entitas.Systems.GameState;
+using RMC.EntitasCoverShooter.Entitas.Systems;
 using RMC.Common.Utilities;
 using RMC.Common.Entitas.Components.Render;
 
-namespace RMC.EntitasPong.Entitas.Controllers.Singleton
+namespace RMC.EntitasCoverShooter.Entitas.Controllers.Singleton
 {
 	/// <summary>
 	/// The main entry point for the game. Creates the Entitas setup

@@ -8,12 +8,12 @@
 //------------------------------------------------------------------------------
 namespace Entitas {
     public partial class Entity {
-        public RMC.EntitasPong.Entitas.Components.AIComponent aI { get { return (RMC.EntitasPong.Entitas.Components.AIComponent)GetComponent(ComponentIds.AI); } }
+        public RMC.EntitasCoverShooter.Entitas.Components.AIComponent aI { get { return (RMC.EntitasCoverShooter.Entitas.Components.AIComponent)GetComponent(ComponentIds.AI); } }
 
         public bool hasAI { get { return HasComponent(ComponentIds.AI); } }
 
         public Entity AddAI(Entitas.Entity newTargetEntity, float newDeadZoneY, float newVelocityY) {
-            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.AIComponent>(ComponentIds.AI);
+            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.AIComponent>(ComponentIds.AI);
             component.targetEntity = newTargetEntity;
             component.deadZoneY = newDeadZoneY;
             component.velocityY = newVelocityY;
@@ -21,7 +21,7 @@ namespace Entitas {
         }
 
         public Entity ReplaceAI(Entitas.Entity newTargetEntity, float newDeadZoneY, float newVelocityY) {
-            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.AIComponent>(ComponentIds.AI);
+            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.AIComponent>(ComponentIds.AI);
             component.targetEntity = newTargetEntity;
             component.deadZoneY = newDeadZoneY;
             component.velocityY = newVelocityY;

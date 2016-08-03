@@ -20,7 +20,7 @@ Instructions
 Structure Overview
 =============
 * **/Assets/RMC/Common/Scripts/Runtime/** contains code that could be reused across various Entitas games<BR>
-* **/Assets/RMC/EntitasPong/Scripts/Runtime/** contains game-specific code
+* **/Assets/RMC/EntitasCoverShooter/Scripts/Runtime/** contains game-specific code
 
 Code Overview
 =============
