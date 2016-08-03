@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 namespace Entitas {
     public partial class Entity {
-        public RMC.EntitasCoverShooter.Entitas.Components.BoundsBounceComponent boundsBounce { get { return (RMC.EntitasCoverShooter.Entitas.Components.BoundsBounceComponent)GetComponent(ComponentIds.BoundsBounce); } }
+        public RMC.EntitasPong.Entitas.Components.BoundsBounceComponent boundsBounce { get { return (RMC.EntitasPong.Entitas.Components.BoundsBounceComponent)GetComponent(ComponentIds.BoundsBounce); } }
 
         public bool hasBoundsBounce { get { return HasComponent(ComponentIds.BoundsBounce); } }
 
         public Entity AddBoundsBounce(float newBounceAmount) {
-            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.BoundsBounceComponent>(ComponentIds.BoundsBounce);
+            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.BoundsBounceComponent>(ComponentIds.BoundsBounce);
             component.bounceAmount = newBounceAmount;
             return AddComponent(ComponentIds.BoundsBounce, component);
         }
 
         public Entity ReplaceBoundsBounce(float newBounceAmount) {
-            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.BoundsBounceComponent>(ComponentIds.BoundsBounce);
+            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.BoundsBounceComponent>(ComponentIds.BoundsBounce);
             component.bounceAmount = newBounceAmount;
             ReplaceComponent(ComponentIds.BoundsBounce, component);
             return this;

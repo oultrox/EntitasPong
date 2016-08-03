@@ -1,6 +1,6 @@
 ﻿using Entitas;
 
-namespace RMC.EntitasCoverShooter.Entitas.Components
+namespace RMC.EntitasPong.Entitas.Components
 {
 	/// <summary>
 	/// Flags Entity as a Paddle. 

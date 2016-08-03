@@ -8,12 +8,12 @@
 //------------------------------------------------------------------------------
 namespace Entitas {
     public partial class Entity {
-        public RMC.EntitasCoverShooter.Entitas.Components.GameState.TimeComponent time { get { return (RMC.EntitasCoverShooter.Entitas.Components.GameState.TimeComponent)GetComponent(ComponentIds.Time); } }
+        public RMC.EntitasPong.Entitas.Components.GameState.TimeComponent time { get { return (RMC.EntitasPong.Entitas.Components.GameState.TimeComponent)GetComponent(ComponentIds.Time); } }
 
         public bool hasTime { get { return HasComponent(ComponentIds.Time); } }
 
         public Entity AddTime(float newTimeSinceGameStartUnpaused, float newTimeSinceGameStartTotal, bool newIsPaused) {
-            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.GameState.TimeComponent>(ComponentIds.Time);
+            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.TimeComponent>(ComponentIds.Time);
             component.timeSinceGameStartUnpaused = newTimeSinceGameStartUnpaused;
             component.timeSinceGameStartTotal = newTimeSinceGameStartTotal;
             component.isPaused = newIsPaused;
@@ -21,7 +21,7 @@ namespace Entitas {
         }
 
         public Entity ReplaceTime(float newTimeSinceGameStartUnpaused, float newTimeSinceGameStartTotal, bool newIsPaused) {
-            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.GameState.TimeComponent>(ComponentIds.Time);
+            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.TimeComponent>(ComponentIds.Time);
             component.timeSinceGameStartUnpaused = newTimeSinceGameStartUnpaused;
             component.timeSinceGameStartTotal = newTimeSinceGameStartTotal;
             component.isPaused = newIsPaused;
@@ -37,13 +37,13 @@ namespace Entitas {
     public partial class Pool {
         public Entity timeEntity { get { return GetGroup(Matcher.Time).GetSingleEntity(); } }
 
-        public RMC.EntitasCoverShooter.Entitas.Components.GameState.TimeComponent time { get { return timeEntity.time; } }
+        public RMC.EntitasPong.Entitas.Components.GameState.TimeComponent time { get { return timeEntity.time; } }
 
         public bool hasTime { get { return timeEntity != null; } }
 
         public Entity SetTime(float newTimeSinceGameStartUnpaused, float newTimeSinceGameStartTotal, bool newIsPaused) {
             if (hasTime) {
-                throw new EntitasException("Could not set time!\n" + this + " already has an entity with RMC.EntitasCoverShooter.Entitas.Components.GameState.TimeComponent!",
+                throw new EntitasException("Could not set time!\n" + this + " already has an entity with RMC.EntitasPong.Entitas.Components.GameState.TimeComponent!",
                     "You should check if the pool already has a timeEntity before setting it or use pool.ReplaceTime().");
             }
             var entity = CreateEntity();

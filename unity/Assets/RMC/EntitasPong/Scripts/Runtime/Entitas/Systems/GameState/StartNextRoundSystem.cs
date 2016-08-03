@@ -2,13 +2,13 @@
 using RMC.Common.Entitas.Components;
 using System;
 using System.Collections.Generic;
-using RMC.EntitasCoverShooter.Entitas;
-using RMC.EntitasCoverShooter.Entitas.Controllers.Singleton;
+using RMC.EntitasPong.Entitas;
+using RMC.EntitasPong.Entitas.Controllers.Singleton;
 using System.Collections;
 using RMC.Common.UnityEngineReplacement;
 using RMC.Common.Utilities;
 
-namespace RMC.EntitasCoverShooter.Entitas.Systems.GameState
+namespace RMC.EntitasPong.Entitas.Systems.GameState
 {
 	/// <summary>
 	/// Called at game start and after every goal

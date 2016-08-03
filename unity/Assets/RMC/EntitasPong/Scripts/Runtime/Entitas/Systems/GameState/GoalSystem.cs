@@ -1,10 +1,10 @@
 ﻿using Entitas;
 using RMC.Common.Entitas.Components;
 using System;
-using RMC.EntitasCoverShooter.Entitas.Controllers;
+using RMC.EntitasPong.Entitas.Controllers;
 using System.Collections;
-using RMC.EntitasCoverShooter.Entitas.Controllers.Singleton;
-using RMC.EntitasCoverShooter.Entitas;
+using RMC.EntitasPong.Entitas.Controllers.Singleton;
+using RMC.EntitasPong.Entitas;
 using RMC.Common.UnityEngineReplacement;
 using RMC.Common.Utilities;
 

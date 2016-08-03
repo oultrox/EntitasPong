@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 namespace Entitas {
     public partial class Entity {
-        static readonly RMC.EntitasCoverShooter.Entitas.Components.GameState.GameComponent gameComponent = new RMC.EntitasCoverShooter.Entitas.Components.GameState.GameComponent();
+        static readonly RMC.EntitasPong.Entitas.Components.GameState.GameComponent gameComponent = new RMC.EntitasPong.Entitas.Components.GameState.GameComponent();
 
         public bool isGame {
             get { return HasComponent(ComponentIds.Game); }

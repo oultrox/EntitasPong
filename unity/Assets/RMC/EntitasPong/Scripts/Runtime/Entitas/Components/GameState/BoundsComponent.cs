@@ -1,7 +1,7 @@
 ﻿using Entitas;
 using RMC.Common.UnityEngineReplacement;
 
-namespace RMC.EntitasCoverShooter.Entitas.Components.GameState
+namespace RMC.EntitasPong.Entitas.Components.GameState
 {
 	/// <summary>
 	/// Stores the screen bounds

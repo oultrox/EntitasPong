@@ -2,7 +2,7 @@
 using RMC.Common.Entitas.Components;
 using System;
 using System.Collections.Generic;
-using RMC.EntitasCoverShooter.Entitas;
+using RMC.EntitasPong.Entitas;
 using RMC.Common.UnityEngineReplacement;
 
 namespace RMC.Common.Entitas.Systems

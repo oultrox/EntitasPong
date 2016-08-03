@@ -2,9 +2,9 @@
 using Entitas;
 using UnityEngine.UI;
 using System;
-using RMC.EntitasCoverShooter.Entitas.Controllers.Singleton;
+using RMC.EntitasPong.Entitas.Controllers.Singleton;
 
-namespace RMC.EntitasCoverShooter.Entitas.Controllers
+namespace RMC.EntitasPong.Entitas.Controllers
 {
 	/// <summary>
 	/// Bridges the Unity GUI and the Entitas

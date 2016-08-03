@@ -4,7 +4,7 @@ using Entitas;
 using RMC.Common.Entitas.Components.Collision;
 using RMC.Common.UnityEngineReplacement;
 
-namespace RMC.EntitasCoverShooter.Entitas.Systems.Collision
+namespace RMC.EntitasPong.Entitas.Systems.Collision
 {
 	/// <summary>
 	/// Replace me with description.

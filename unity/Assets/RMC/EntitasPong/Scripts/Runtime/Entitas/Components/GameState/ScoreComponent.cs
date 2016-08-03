@@ -1,7 +1,7 @@
 using Entitas;
 using Entitas.CodeGenerator;
 
-namespace RMC.EntitasCoverShooter.Entitas.Components.GameState
+namespace RMC.EntitasPong.Entitas.Components.GameState
 {
 	/// <summary>
 	/// Stores score

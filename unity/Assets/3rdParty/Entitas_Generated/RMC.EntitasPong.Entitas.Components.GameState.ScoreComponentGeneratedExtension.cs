@@ -8,19 +8,19 @@
 //------------------------------------------------------------------------------
 namespace Entitas {
     public partial class Entity {
-        public RMC.EntitasCoverShooter.Entitas.Components.GameState.ScoreComponent score { get { return (RMC.EntitasCoverShooter.Entitas.Components.GameState.ScoreComponent)GetComponent(ComponentIds.Score); } }
+        public RMC.EntitasPong.Entitas.Components.GameState.ScoreComponent score { get { return (RMC.EntitasPong.Entitas.Components.GameState.ScoreComponent)GetComponent(ComponentIds.Score); } }
 
         public bool hasScore { get { return HasComponent(ComponentIds.Score); } }
 
         public Entity AddScore(int newWhiteScore, int newBlackScore) {
-            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.GameState.ScoreComponent>(ComponentIds.Score);
+            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.ScoreComponent>(ComponentIds.Score);
             component.whiteScore = newWhiteScore;
             component.blackScore = newBlackScore;
             return AddComponent(ComponentIds.Score, component);
         }
 
         public Entity ReplaceScore(int newWhiteScore, int newBlackScore) {
-            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.GameState.ScoreComponent>(ComponentIds.Score);
+            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.GameState.ScoreComponent>(ComponentIds.Score);
             component.whiteScore = newWhiteScore;
             component.blackScore = newBlackScore;
             ReplaceComponent(ComponentIds.Score, component);
@@ -35,13 +35,13 @@ namespace Entitas {
     public partial class Pool {
         public Entity scoreEntity { get { return GetGroup(Matcher.Score).GetSingleEntity(); } }
 
-        public RMC.EntitasCoverShooter.Entitas.Components.GameState.ScoreComponent score { get { return scoreEntity.score; } }
+        public RMC.EntitasPong.Entitas.Components.GameState.ScoreComponent score { get { return scoreEntity.score; } }
 
         public bool hasScore { get { return scoreEntity != null; } }
 
         public Entity SetScore(int newWhiteScore, int newBlackScore) {
             if (hasScore) {
-                throw new EntitasException("Could not set score!\n" + this + " already has an entity with RMC.EntitasCoverShooter.Entitas.Components.GameState.ScoreComponent!",
+                throw new EntitasException("Could not set score!\n" + this + " already has an entity with RMC.EntitasPong.Entitas.Components.GameState.ScoreComponent!",
                     "You should check if the pool already has a scoreEntity before setting it or use pool.ReplaceScore().");
             }
             var entity = CreateEntity();

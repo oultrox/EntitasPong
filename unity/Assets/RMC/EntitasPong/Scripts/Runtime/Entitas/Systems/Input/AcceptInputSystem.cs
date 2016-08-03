@@ -2,7 +2,7 @@
 using RMC.Common.Entitas.Components.Input;
 using RMC.Common.UnityEngineReplacement;
 
-namespace RMC.EntitasCoverShooter.Entitas.Systems
+namespace RMC.EntitasPong.Entitas.Systems
 {
 	/// <summary>
 	/// Process input

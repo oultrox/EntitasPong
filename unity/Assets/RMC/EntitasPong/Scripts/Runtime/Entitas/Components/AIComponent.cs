@@ -1,6 +1,6 @@
 ﻿using Entitas;
 
-namespace RMC.EntitasCoverShooter.Entitas.Components
+namespace RMC.EntitasPong.Entitas.Components
 {
 	/// <summary>
 	/// Stores how the computer Paddle responds to the ball

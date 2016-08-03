@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 namespace Entitas {
     public partial class Entity {
-        public RMC.EntitasCoverShooter.Entitas.Components.PaddleComponent paddle { get { return (RMC.EntitasCoverShooter.Entitas.Components.PaddleComponent)GetComponent(ComponentIds.Paddle); } }
+        public RMC.EntitasPong.Entitas.Components.PaddleComponent paddle { get { return (RMC.EntitasPong.Entitas.Components.PaddleComponent)GetComponent(ComponentIds.Paddle); } }
 
         public bool hasPaddle { get { return HasComponent(ComponentIds.Paddle); } }
 
-        public Entity AddPaddle(RMC.EntitasCoverShooter.Entitas.Components.PaddleComponent.PaddleType newPaddleType) {
-            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.PaddleComponent>(ComponentIds.Paddle);
+        public Entity AddPaddle(RMC.EntitasPong.Entitas.Components.PaddleComponent.PaddleType newPaddleType) {
+            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.PaddleComponent>(ComponentIds.Paddle);
             component.paddleType = newPaddleType;
             return AddComponent(ComponentIds.Paddle, component);
         }
 
-        public Entity ReplacePaddle(RMC.EntitasCoverShooter.Entitas.Components.PaddleComponent.PaddleType newPaddleType) {
-            var component = CreateComponent<RMC.EntitasCoverShooter.Entitas.Components.PaddleComponent>(ComponentIds.Paddle);
+        public Entity ReplacePaddle(RMC.EntitasPong.Entitas.Components.PaddleComponent.PaddleType newPaddleType) {
+            var component = CreateComponent<RMC.EntitasPong.Entitas.Components.PaddleComponent>(ComponentIds.Paddle);
             component.paddleType = newPaddleType;
             ReplaceComponent(ComponentIds.Paddle, component);
             return this;

@@ -4,7 +4,7 @@ using RMC.Common.Entitas.Components.Render;
 using RMC.Common.Entitas.Components.Transform;
 using RMC.Common.UnityEngineReplacement;
 
-namespace RMC.EntitasCoverShooter.Entitas.Systems
+namespace RMC.EntitasPong.Entitas.Systems
 {
     /// <summary>
     /// Stores how the computer Paddle responds to the ball
